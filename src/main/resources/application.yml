@@ -1,0 +1,37 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: transaction-example
+  datasource:
+    url: jdbc:mysql://localhost:3306/tenant_1?useSSL=false&characterEncoding=UTF-8
+    username: root
+    password: 123
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 60000
+      maximum-pool-size: 5
+      minimum-idle: 1
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        current_session_context_class: thread
+        multiTenancy: SCHEMA
+        tenant_identifier_resolver: com.example.hibernate.tenant.TenantIdentifierResolver
+        multi_tenant_connection_provider: com.example.hibernate.tenant.MultiTenantConnectionProviderImpl
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+multitenancy:
+  tenants:
+    default:
+      url: jdbc:mysql://localhost:3306/tenant_1?useSSL=false&characterEncoding=UTF-8
+      username: root
+      password: 123
+    tenant_1:
+      url: jdbc:mysql://localhost:3306/tenant_1?useSSL=false&characterEncoding=UTF-8
+      username: root
+      password: 123
+    tenant_2:
+      url: jdbc:mysql://localhost:3306/tenant_2?useSSL=false&characterEncoding=UTF-8
+      username: root
+      password: 123

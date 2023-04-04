@@ -1,0 +1,3 @@
+本工程基于SpringBoot和Hibernate 实现的多租户功能
+
+基于JDK11，SpringBoot2.7版本
